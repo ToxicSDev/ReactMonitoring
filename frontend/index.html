@@ -6,7 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Monitor</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <!-- Add Chart.js library for pie charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            width: 50%;
+        }
 
+        canvas:nth-child(odd) {
+            float: left;
+        }
+
+        canvas:nth-child(2n+1)::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
     <script>
         var socket = io();
         socket.on('info', data => {
@@ -14,22 +30,47 @@
             let div = document.getElementById('data');
             div.innerHTML = '';
             for (const key of Object.keys(data)) {
-                div.innerHTML += `<h2>${key}</h2>`;
-                div.innerHTML += `<ul>`;
-                console.log(data[key]);
-                for (const [key2, val] of Object.entries(data[key])) {
-                    div.innerHTML += `<li>${key2}: ${val}</li>`;
+                // Generate pie chart based on the key
+                if (key === 'cpu') {
+                    generatePieChart('Cpu Usage', data[key]);
+                } else if (key === 'mem') {
+                    generatePieChart('Memory Usage', data[key]);
+                } else if (key === 'disk') {
+                    generatePieChart('Disk Usage', data[key]);
                 }
-                div.innerHTML += `</ul>`;
             }
-        })
+        });
+
+        function generatePieChart(chartTitle, chartData) {
+            var div = document.getElementById('data');
+            var canvas = document.createElement('canvas');
+            div.appendChild(canvas);
+            var ctx = canvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Used', 'Free'],
+                    datasets: [{
+                        data: [chartData, (100 - chartData)],
+                        backgroundColor: ['#ff6384', '#36a2eb'],
+                        hoverBackgroundColor: ['#ff6384', '#36a2eb']
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: chartTitle
+                    }
+                }
+            });
+        }
 
     </script>
 </head>
 
 <body>
-    <h1>System Monitroing</h1>
-    <h2>time <span id="time"></span></h2>
+    <h1>System Monitoring</h1>
+    <h2>Time: <span id="time"></span></h2>
     <div id="data"></div>
 </body>
 

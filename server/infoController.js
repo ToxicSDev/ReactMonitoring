@@ -4,13 +4,12 @@ const main = require('../index');
 
 async function getInformation() {
     const result = {};
-    const promises = [];
 
     for (const key of Object.keys(config.data)) {
         if (!config.data[key].active) continue;
-        if (!typeof system[key] == 'function') continue;
 
         const data = await system[key]();
+
         result[key] = data;
     }
 

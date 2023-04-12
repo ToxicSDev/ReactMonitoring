@@ -7,7 +7,7 @@ let task;
 exports.getTask = () => task;
 exports.startTask = () => {
     let sec = config.server.refreshRate;
-    if (sec < 1 || sec > 59) sec = 10;
+    if (sec < 1 ) sec = 10;
     core();
     task = cron.schedule(`*/${sec} * * * * *`, () => {
         core();
