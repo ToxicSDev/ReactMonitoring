@@ -28,6 +28,9 @@ http.listen(PORT, () => {
     console.log(`    \x1b[36m│    \x1b[37m      http://localhost:${PORT}         \x1b[36m│`);
     console.log(`    \x1b[36m╰────────────────────────────────────────╯`);
     console.log(`\x1b[0m`);
+}).on('error', (error) => {
+    console.error('\x1b[31mERROR: \x1b[37mFailed to start server:', error.message);
+    process.exit(1);
 });
 
 module.exports.clients = clients;

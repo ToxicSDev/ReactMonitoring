@@ -8,9 +8,27 @@ async function getInformation() {
     for (const key of Object.keys(config.data)) {
         if (!config.data[key].active) continue;
 
-        const data = await system[key]();
+        try {
+            const data = await system[key]();
+            result[key] = data;
 
-        result[key] = data;
+            const keyName = key.charAt(0).toUpperCase() + key.slice(1);
+            if (data > config.limits[key].max) {
+                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.limits[key].max, '%!');
+            }
+
+            if (data == 'N/A' || data == 'NaN') {
+                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is not available!');
+            }
+
+            if (data < 0) {
+                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is below 0%!');
+            }
+
+        } catch (error) {
+            console.error('\x1b[31mERROR: \x1b[37mFailed to get information for', key, ':', error.message);
+            process.exit(1);
+        }
     }
 
     return result;
@@ -21,8 +39,13 @@ function sendInformation(data) {
 }
 
 async function run() {
-    let result = await getInformation();
-    sendInformation(JSON.parse(JSON.stringify(result)));
+    try {
+        let result = await getInformation();
+        sendInformation(JSON.parse(JSON.stringify(result)));
+    } catch (error) {
+        console.error('\x1b[31mERROR: \x1b[37mFailed to run information retrieval:', error.message);
+        process.exit(1);
+    }
 }
 
 module.exports = run;

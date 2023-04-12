@@ -1,5 +1,6 @@
 const main = require('../../index');
 const cron = require('../cron');
+
 class Client {
     /**
      * @param  {SocketIO.Socket} client
@@ -16,15 +17,25 @@ class Client {
     }
 
     sendServerData(data) {
-        this.socket.emit('info', data);
+        try {
+            this.socket.emit('info', data);
+        } catch (error) {
+            console.error('\x1b[31mERROR: \x1b[37mFailed to send server data:', error.message);
+            process.exit(1);
+        }
     }
 
     remove() {
-        const index = main.clients.findIndex(
-            (val) => val.socket.id == this.socket.id
-        );
-        if (index != -1) main.clients.splice(index, 1);
-        if (main.clients.length == 0) cron.destroyTask();
+        try {
+            const index = main.clients.findIndex(
+                (val) => val.socket.id == this.socket.id
+            );
+            if (index != -1) main.clients.splice(index, 1);
+            if (main.clients.length == 0) cron.destroyTask();
+        } catch (error) {
+            console.error('\x1b[31mERROR: \x1b[37mFailed to remove client:', error.message);
+            process.exit(1);
+        }
     }
 }
 

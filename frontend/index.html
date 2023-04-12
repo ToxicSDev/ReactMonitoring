@@ -10,7 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         canvas {
-            width: 50%;
+            width: 25%;
+            height: 25%;
         }
 
         canvas:nth-child(odd) {
@@ -26,7 +27,6 @@
     <script>
         var socket = io();
         socket.on('info', data => {
-            document.getElementById('time').innerHTML = (new Date()).toTimeString().split(' ')[0];
             let div = document.getElementById('data');
             div.innerHTML = '';
             for (const key of Object.keys(data)) {
@@ -70,7 +70,6 @@
 
 <body>
     <h1>System Monitoring</h1>
-    <h2>Time: <span id="time"></span></h2>
     <div id="data"></div>
 </body>
 
