@@ -4,12 +4,15 @@ class Client {
     /**
      * @param  {SocketIO.Socket} client
      */
-    constructor(client) {
+    constructor (client) {
         this.socket = client;
-        console.log('client connected!');
+        console.log('\x1b[36mINFO: \x1b[37mClient connected!');
         this.client = this;
 
-        client.on('disconnect', this.remove.bind(this));
+        client.on('disconnect', () => {
+            this.remove.bind(this);
+            console.log('\x1b[36mINFO: \x1b[37mClient disconnected!');
+        });
     }
 
     sendServerData(data) {
@@ -21,7 +24,7 @@ class Client {
             (val) => val.socket.id == this.socket.id
         );
         if (index != -1) main.clients.splice(index, 1);
-        if (main.clients.length == 0) cron.distroyTask();
+        if (main.clients.length == 0) cron.destroyTask();
     }
 }
 

@@ -3,10 +3,10 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const cron = require('./core/cron');
+const cron = require('./server/cron');
 
-const Client = require('./core/models/client');
-const indexRoute = require('./core/routes/index');
+const Client = require('./server/models/client');
+const indexRoute = require('./server/routes/router');
 
 const PORT = config.server.port || 3030;
 const clients = [];
@@ -21,7 +21,13 @@ io.on('connection', (socket) => {
 });
 
 http.listen(PORT, () => {
-    console.log('System Monitor is running on http://localhost:' + PORT);
+    console.log(`\x1b[36m`);
+    console.log(`    \x1b[36m╭────────────────────────────────────────╮`);
+    console.log(`    \x1b[36m│      \x1b[37m> SystemMonitoring Started <      \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m                                    \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m      http://localhost:${PORT}         \x1b[36m│`);
+    console.log(`    \x1b[36m╰────────────────────────────────────────╯`);
+    console.log(`\x1b[0m`);
 });
 
 module.exports.clients = clients;
