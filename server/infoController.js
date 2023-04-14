@@ -13,8 +13,8 @@ async function getInformation() {
             result[key] = data;
 
             const keyName = key.charAt(0).toUpperCase() + key.slice(1);
-            if (data > config.limits[key].max) {
-                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.limits[key].max, '%!');
+            if (data > config.server.limit) {
+                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.server.limit, '%!');
             }
 
             if (data == 'N/A' || data == 'NaN') {

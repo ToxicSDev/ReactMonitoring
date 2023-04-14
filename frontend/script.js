@@ -38,7 +38,7 @@ function generatePieChart(chartTitle, chartData, container) {
     if (chartData < 50) {
         status = "Normal";
         statusTitle.classList.add('normal');
-    } else if (chartData > 50 && chartData < 75) {
+    } else if (chartData >= 50 && chartData <= 75) {
         status = "Warning";
         statusTitle.classList.add('warning');
     } else if (chartData > 75) {

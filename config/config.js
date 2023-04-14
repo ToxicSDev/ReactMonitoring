@@ -12,17 +12,7 @@ module.exports = {
     },
     server: {
         port: 3030,
-        refreshRate: 10
-    },
-    limits: {
-        cpu: {
-            max: 50,
-        },
-        mem: {
-            max: 40,
-        },
-        disk: {
-            max: 40,
-        },
+        refreshRate: 10,
+        limit: 75
     },
 };

@@ -4,6 +4,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const cron = require('./server/cron');
+const favicon = require('serve-favicon');
 
 const Client = require('./server/models/client');
 const indexRoute = require('./server/routes/router');
@@ -13,6 +14,7 @@ const PORT = config.server.port || 3030;
 app.use(express.json());
 app.use('/', indexRoute);
 app.use(express.static('frontend'));
+app.use(favicon('frontend/assets/favicon.ico'));
 
 const clients = [];
 io.on('connection', (socket) => {
