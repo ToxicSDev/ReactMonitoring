@@ -13,8 +13,12 @@ async function getInformation() {
             result[key] = data;
 
             const keyName = key.charAt(0).toUpperCase() + key.slice(1);
-            if (data > config.server.limit) {
-                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.server.limit, '%!');
+            if (data >= config.data[key].warning && data < config.data[key].alert) {
+                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
+            }
+
+            if (data >= config.data[key].alert) {
+                console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
             }
 
             if (data == 'N/A' || data == 'NaN') {

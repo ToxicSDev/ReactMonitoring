@@ -1,13 +1,19 @@
 {
     "data": {
         "cpu": {
-            "active": true
+            "active": true,
+            "warning": 50,
+            "alert": 75
         },
         "mem": {
-            "active": true
+            "active": true,
+            "warning": 50,
+            "alert": 75
         },
         "disk": {
-            "active": true
+            "active": true,
+            "warning": 50,
+            "alert": 60
         }
     },
     "server": {
@@ -19,7 +25,6 @@
             "host": "http://localhost",
             "port": 3030
         },
-        "refreshRate": 10,
-        "limit": 75
+        "refreshRate": 60
     }
 }
