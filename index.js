@@ -9,10 +9,12 @@ const Client = require('./server/models/client');
 const indexRoute = require('./server/routes/router');
 
 const PORT = config.server.port || 3030;
-const clients = [];
+
 app.use(express.json());
 app.use('/', indexRoute);
+app.use(express.static('frontend'));
 
+const clients = [];
 io.on('connection', (socket) => {
     const client = new Client(socket);
     clients.push(client);
