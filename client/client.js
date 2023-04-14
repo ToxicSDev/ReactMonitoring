@@ -1,4 +1,4 @@
-const config = require('./../config/config.json');
+const config = require('../config/config.json');
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);

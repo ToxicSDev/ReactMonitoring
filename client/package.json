@@ -2,10 +2,10 @@
   "name": "sysmonitor-frontend",
   "version": "1.0.0",
   "description": "Frontend microservice for the SystemMonitoring project",
-  "main": "frontend.js",
+  "main": "client.js",
   "scripts": {
-    "test": "nodemon frontend.js",
-    "start": "node frontend.js"
+    "test": "nodemon client.js",
+    "start": "node client.js"
   },
   "repository": {
     "type": "git",
