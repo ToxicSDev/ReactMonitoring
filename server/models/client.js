@@ -1,4 +1,4 @@
-const main = require('../../index');
+const main = require('../../backend');
 const cron = require('../cron');
 
 class Client {

@@ -1,20 +1,14 @@
-const config = require('./config/config');
+const config = require('./config/config.json');
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const cron = require('./server/cron');
-const favicon = require('serve-favicon');
 
 const Client = require('./server/models/client');
-const indexRoute = require('./server/routes/router');
 
-const PORT = config.server.port || 3030;
-
-app.use(express.json());
-app.use('/', indexRoute);
-app.use(express.static('frontend'));
-app.use(favicon('frontend/assets/favicon.ico'));
+const HOST = config.server.Backend.host || 'http://localhost';
+const PORT = config.server.Backend.port || 3031;
 
 const clients = [];
 io.on('connection', (socket) => {
@@ -27,9 +21,10 @@ io.on('connection', (socket) => {
 http.listen(PORT, () => {
     console.log(`\x1b[36m`);
     console.log(`    \x1b[36m╭────────────────────────────────────────╮`);
-    console.log(`    \x1b[36m│      \x1b[37m> SystemMonitoring Started <      \x1b[36m│`);
+    console.log(`    \x1b[36m│      \x1b[31m> SystemMonitoring Started <      \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m            Backend                 \x1b[36m│`);
     console.log(`    \x1b[36m│    \x1b[37m                                    \x1b[36m│`);
-    console.log(`    \x1b[36m│    \x1b[37m      http://localhost:${PORT}         \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m      ${HOST}:${PORT}         \x1b[36m│`);
     console.log(`    \x1b[36m╰────────────────────────────────────────╯`);
     console.log(`\x1b[0m`);
 }).on('error', (error) => {

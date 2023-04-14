@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io('http://localhost:3031');
 socket.on('info', data => {
     let container = document.getElementById('chart-container');
     container.innerHTML = '';

@@ -1,6 +1,6 @@
-const config = require('../config/config');
+const config = require('../config/config.json');
 const system = require('./systemInfo');
-const main = require('../index');
+const main = require('../backend');
 
 async function getInformation() {
     const result = {};
