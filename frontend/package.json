@@ -1,0 +1,25 @@
+{
+  "name": "sysmonitor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend microservice for the SystemMonitoring project",
+  "main": "frontend.js",
+  "scripts": {
+    "test": "nodemon frontend.js",
+    "start": "node frontend.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToxicSDev/SystemMonitoring.git"
+  },
+  "author": "ToxicSDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ToxicSDev/SystemMonitoring/issues"
+  },
+  "homepage": "https://github.com/ToxicSDev/SystemMonitoring#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0"
+  }
+}

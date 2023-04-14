@@ -1,5 +1,5 @@
-const main = require('../../backend');
-const cron = require('../cron');
+const main = require('../../server');
+const cron = require('../utils/cron');
 
 class Client {
     /**

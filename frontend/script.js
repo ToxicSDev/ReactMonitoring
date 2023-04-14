@@ -14,6 +14,7 @@ function fetchConfigData(callback) {
         });
 }
 
+
 fetchConfigData(() => {
     var socket = io(config.server.Backend.host + ':' + config.server.Backend.port);
     socket.on('info', data => {

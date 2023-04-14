@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port that the app will run on
-EXPOSE 3031
+EXPOSE 3030
 
 # Define a healthcheck that pings the app's endpoint to check if it's running
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
