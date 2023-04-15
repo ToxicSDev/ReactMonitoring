@@ -8,18 +8,18 @@ if ! command -v docker &> /dev/null; then
     else
         echo "Running server and client using npm..."
 
-        cd ./server
+        cd ./server || exit
         npm i
         npm start &
 
         cd ..
 
-        cd ./client
+        cd ./client || exit
         npm i
         npm start &
     fi
 else
-    cd ./server
+    cd ./server || exit
     docker build -t backend-service -f Dockerfile.server .
     docker run -d --name server -p 3031:3031 backend-service
 
@@ -31,7 +31,7 @@ else
 
     cd ..
 
-    cd ./client
+    cd ./client || exit
     docker build -t frontend-service -f Dockerfile.client .
     docker run -d --name client -p 3030:3030 frontend-service
 
@@ -39,7 +39,7 @@ else
         echo "Failed to start frontend service using Docker. Running client using npm..."
         npm i
         npm start &
-    fi
+    fi		
 
     cd ..
-fi
+fi 

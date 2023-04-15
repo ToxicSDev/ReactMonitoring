@@ -25,6 +25,6 @@
             "host": "http://localhost",
             "port": 3030
         },
-        "refreshRate": 60
+        "refreshRate": 10
     }
 }
