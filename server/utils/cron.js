@@ -1,4 +1,4 @@
-const config = require('../../config/config.json');
+const config = require('../config/config.json');
 const cron = require('node-cron');
 const core = require('./infoController');
 

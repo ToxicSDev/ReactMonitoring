@@ -1,0 +1,30 @@
+{
+    "data": {
+        "cpu": {
+            "active": true,
+            "warning": 50,
+            "alert": 75
+        },
+        "mem": {
+            "active": true,
+            "warning": 50,
+            "alert": 75
+        },
+        "disk": {
+            "active": true,
+            "warning": 50,
+            "alert": 60
+        }
+    },
+    "server": {
+        "Backend": {
+            "host": "http://localhost",
+            "port": 3031
+        },
+        "Frontend": {
+            "host": "http://localhost",
+            "port": 3030
+        },
+        "refreshRate": 60
+    }
+}
