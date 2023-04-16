@@ -8,7 +8,7 @@ The SystemMonitoring project allows users to set customizable threshold limits f
 
 ## Architecture
 
-![Architecture](https://i.imgur.com/JirqOPX.png)
+![Architecture](https://i.imgur.com/R6CvaNL.png)
 
 ## Dependencies
 
