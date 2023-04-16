@@ -6,6 +6,10 @@ The client component provides a user-friendly interface that displays the system
 
 The SystemMonitoring project allows users to set customizable threshold limits for each resource usage, based on their system's requirements. When a resource usage exceeds the threshold limit, the client component shows that to the user. The microservices architecture of the project allows for scalability and flexibility, enabling it to be easily integrated into existing systems or deployed as a standalone monitoring solution. The server and client components communicate through sockets, allowing for seamless data exchange and updates.
 
+## Architecture
+
+[Architecture](https://i.imgur.com/JirqOPX.png)
+
 ## Dependencies
 
 - [Docker](https://www.docker.com/) **(Recommended)** - Used for building, shipping, and running the microservices using containers. Docker-compose is used for scalability and container management.
