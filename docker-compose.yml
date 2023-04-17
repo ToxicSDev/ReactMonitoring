@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 5s
     deploy:
-      replicas: 1
+      replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 3
@@ -27,7 +27,7 @@ services:
       retries: 3
       start_period: 5s
     deploy:
-      replicas: 1
+      replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 3
@@ -44,4 +44,4 @@ services:
 networks:
   default:
     driver: bridge
-    name: frontend
+    name: SystemMonitoring

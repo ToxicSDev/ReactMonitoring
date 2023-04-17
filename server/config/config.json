@@ -31,7 +31,7 @@
             "port": 3031
         },
         "Frontend": {
-            "host": "frotnednd",
+            "host": "frontend",
             "port": 3030
         },
         "refreshRate": 10

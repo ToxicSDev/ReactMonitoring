@@ -2,7 +2,7 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const config = require('./config/config.json');
 
-const HOST = config.server.Frontend.host || 'http://localhost';
+const HOST = config.server.Frontend.host || 'http://frontend';
 const PORT = config.server.Frontend.port || 3030;
 
 const app = express();
