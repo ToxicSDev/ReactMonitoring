@@ -45,3 +45,14 @@ exports.disk = async () => {
         process.exit(1);
     }
 };
+
+exports.battery = async () => {
+    try {
+        const batteryInfo = await si.battery();
+        return batteryInfo.hasbattery ? batteryInfo.percent.toFixed(1) : 'N/A';
+    } catch (error) {
+        console.error('\x1b[31mERROR: \x1b[37mFailed to get battery percentage:', error.message);
+        
+        process.exit(1);
+    }
+};

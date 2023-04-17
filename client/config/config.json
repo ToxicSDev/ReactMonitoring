@@ -3,17 +3,46 @@
         "cpu": {
             "active": true,
             "warning": 50,
-            "alert": 75
+            "alert": 75,
+            "inverted": false,
+            "chart": {
+                "title": "CPU Usage",
+                "dataLabel": "Used",
+                "remainingLabel": "Free"
+            }
         },
         "mem": {
             "active": true,
             "warning": 50,
-            "alert": 75
+            "alert": 75,
+            "inverted": false,
+            "chart": {
+                "title": "Memory Usage",
+                "dataLabel": "Used",
+                "remainingLabel": "Free"
+            }
         },
         "disk": {
             "active": true,
             "warning": 50,
-            "alert": 60
+            "alert": 60,
+            "inverted": false,
+            "chart": {
+                "title": "Disk Usage",
+                "dataLabel": "Used",
+                "remainingLabel": "Free"
+            }
+        },
+        "battery": {
+            "active": true,
+            "warning": 30,
+            "alert": 10,
+            "inverted": true,
+            "chart": {
+                "title": "Battery Level",
+                "dataLabel": "Remaining",
+                "remainingLabel": "Used"
+            }
         }
     },
     "server": {

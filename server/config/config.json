@@ -3,17 +3,26 @@
         "cpu": {
             "active": true,
             "warning": 50,
-            "alert": 75
+            "alert": 75,
+            "inverted": false
         },
         "mem": {
             "active": true,
             "warning": 50,
-            "alert": 75
+            "alert": 75,
+            "inverted": false
         },
         "disk": {
             "active": true,
             "warning": 50,
-            "alert": 60
+            "alert": 60,
+            "inverted": false
+        },
+        "battery": {
+            "active": true,
+            "warning": 30,
+            "alert": 10,
+            "inverted": true
         }
     },
     "server": {

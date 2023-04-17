@@ -2,6 +2,43 @@ const config = require('../config/config.json');
 const system = require('./systemInfo');
 const main = require('../server');
 
+function processData(key, data) {
+    const keyName = key.charAt(0).toUpperCase() + key.slice(1);
+
+    // Checks if data is valid
+    if (data == 'N/A' || data == 'NaN') {
+        console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is not available!');
+        return false;
+    }
+
+    if (data < 0) {
+        console.log('\x1b[31mAlert: \x1b[37m', keyName, 'usage is below 0%!');
+        return false;
+    }
+
+    // Checks if data is below warning or alert levels
+    if (config.data[key].inverted) {
+        if (data <= config.data[key].warning && data > config.data[key].alert) {
+            console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is below', config.data[key].warning, '%!');
+        }
+
+        if (data <= config.data[key].alert) {
+            console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is below', config.data[key].alert, '%!');
+        }
+    } else {
+        // Checks if data is above warning or alert levels
+        if (data >= config.data[key].warning && data < config.data[key].alert) {
+            console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
+        }
+
+        if (data >= config.data[key].alert) {
+            console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
+        }
+    }
+
+    return true;
+}
+
 async function getInformation() {
     const result = {};
 
@@ -10,25 +47,12 @@ async function getInformation() {
 
         try {
             const data = await system[key]();
+
+            if (!processData(key, data)) {
+                continue;
+            }
+
             result[key] = data;
-
-            const keyName = key.charAt(0).toUpperCase() + key.slice(1);
-            if (data >= config.data[key].warning && data < config.data[key].alert) {
-                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
-            }
-
-            if (data >= config.data[key].alert) {
-                console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
-            }
-
-            if (data == 'N/A' || data == 'NaN') {
-                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is not available!');
-            }
-
-            if (data < 0) {
-                console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is below 0%!');
-            }
-
         } catch (error) {
             console.error('\x1b[31mERROR: \x1b[37mFailed to get information for', key, ':', error.message);
             process.exit(1);
