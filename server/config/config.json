@@ -18,6 +18,12 @@
             "alert": 60,
             "inverted": false
         },
+        "graphics": {
+            "active": true,
+            "warning": 50,
+            "alert": 75,
+            "inverted": false
+        },
         "battery": {
             "active": true,
             "warning": 30,

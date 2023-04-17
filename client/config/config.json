@@ -33,6 +33,17 @@
                 "remainingLabel": "Free"
             }
         },
+        "graphics": {
+            "active": true,
+            "warning": 50,
+            "alert": 75,
+            "inverted": false,
+            "chart": {
+                "title": "Graphics Usage",
+                "dataLabel": "Used",
+                "remainingLabel": "Free"
+            }
+        },
         "battery": {
             "active": true,
             "warning": 30,

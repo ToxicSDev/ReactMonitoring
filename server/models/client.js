@@ -7,12 +7,12 @@ class Client {
      */
     constructor (client) {
         this.socket = client;
-        console.log('\x1b[36mINFO: \x1b[37mClient connected!');
+        console.log(main.getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client connected!');
         this.client = this;
 
         client.on('disconnect', () => {
             this.remove.bind(this);
-            console.log('\x1b[36mINFO: \x1b[37mClient disconnected!');
+            console.log(main.getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client disconnected!');
         });
     }
 
@@ -20,7 +20,7 @@ class Client {
         try {
             this.socket.emit('info', data);
         } catch (error) {
-            console.error('\x1b[31mERROR: \x1b[37mFailed to send server data:', error.message);
+            console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to send server data:', error.message);
             process.exit(1);
         }
     }
@@ -33,7 +33,7 @@ class Client {
             if (index != -1) main.clients.splice(index, 1);
             if (main.clients.length == 0) cron.destroyTask();
         } catch (error) {
-            console.error('\x1b[31mERROR: \x1b[37mFailed to remove client:', error.message);
+            console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to remove client:', error.message);
             process.exit(1);
         }
     }

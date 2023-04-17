@@ -81,6 +81,7 @@ function generatePieChart(key, percentage, container) {
             statusTitle.classList.add('alert');
         }
     }
+    
     statusTitle.textContent = status;
     chartDiv.appendChild(statusTitle);
 
