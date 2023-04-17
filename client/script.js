@@ -23,22 +23,17 @@ fetchConfigData(() => {
         container.classList.add("active");
 
         for (const key of Object.keys(data)) {
-            if (key === 'cpu') {
-                generatePieChart('Cpu Usage', key, data[key], container);
-            } else if (key === 'mem') {
-                generatePieChart('Memory Usage', key, data[key], container);
-            } else if (key === 'disk') {
-                generatePieChart('Disk Usage', key, data[key], container);
-            } else if (key === 'battery') {
-                generatePieChart('Battery Level', key, data[key], container);
-            }
-
-            console.log(key);
+            generatePieChart(key, data[key], container);
         }
     });
 });
 
-function generatePieChart(chartTitle, key, chartData, container) {
+function generatePieChart(key, percentage, container) {
+
+    const chartTitle = config.data[key].chart.title;
+    const dataLabel = config.data[key].chart.dataLabel;
+    const remainingLabel = config.data[key].chart.remainingLabel;
+
     var chartDiv = document.createElement('div');
     chartDiv.className = 'chart';
     container.appendChild(chartDiv);
@@ -58,21 +53,25 @@ function generatePieChart(chartTitle, key, chartData, container) {
     var statusTitle = document.createElement('h2');
     statusTitle.className = 'status';
 
-    // const { status, percent } = chartData;
-    
-    // statusTitle.textContent = status;  // .charAt(0).toUpperCase() + status.slice(1);
-    // statusTitle.classList.add(status);
-
-    const percent = chartData;
-    
+    if (percentage < config.data[key].warning) {
+        status = "Normal";
+        statusTitle.classList.add('normal');
+    } else if (percentage >= config.data[key].warning && percentage < config.data[key].alert) {
+        status = "Warning";
+        statusTitle.classList.add('warning');
+    } else if (percentage >= config.data[key].alert) {
+        status = "Alert";
+        statusTitle.classList.add('alert');
+    }
+    statusTitle.textContent = status;
     chartDiv.appendChild(statusTitle);
 
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Used', 'Remaining'],
+            labels: [dataLabel, remainingLabel],
             datasets: [{
-                data: [percent, (100 - percent)],
+                data: [percentage, (100 - percentage)],
                 backgroundColor: ['#ff6384', '#36a2eb'],
                 hoverBackgroundColor: ['#ff6384', '#36a2eb']
             }]
