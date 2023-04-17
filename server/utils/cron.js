@@ -1,7 +1,7 @@
 const config = require('../config/config.json');
 const cron = require('node-cron');
 const core = require('./infoController');
-const { getCurTimeColored } = require('./utils/timeUtils');
+const { getCurTimeColored } = require('./timeUtils');
 
 let task;
 
