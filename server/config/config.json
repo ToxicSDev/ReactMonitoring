@@ -14,12 +14,17 @@
             "active": true,
             "warning": 50,
             "alert": 60
+        },
+        "battery": {
+            "active": true,
+            "warning": 30,
+            "alert": 10
         }
     },
     "server": {
         "Backend": {
             "host": "http://localhost",
-            "port": 3031
+            "port": 3
         },
         "Frontend": {
             "host": "http://localhost",

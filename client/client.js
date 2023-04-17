@@ -1,18 +1,19 @@
-const config = require('./config/config.json');
 const express = require('express');
-const app = express();
-const http = require('http').createServer(app);
 const favicon = require('serve-favicon');
-
-const indexRoute = require('./utils/router');
+const config = require('./config/config.json');
 
 const HOST = config.server.Frontend.host || 'http://localhost';
 const PORT = config.server.Frontend.port || 3030;
 
+const app = express();
+const http = require('http').createServer(app);
+
+const indexRoute = require('./routes/index');
+
 app.use(express.json());
-app.use('/', indexRoute);
 app.use(express.static('./'));
-app.use(favicon('assets/favicon.ico'));
+app.use(favicon('./assets/favicon.ico'));
+app.use('/', indexRoute);
 
 http.listen(PORT, () => {
     console.log(`\x1b[36m`);

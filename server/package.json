@@ -22,5 +22,8 @@
     "node-cron": "^3.0.2",
     "socket.io": "^2.3.0",
     "systeminformation": "^4.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

@@ -21,6 +21,7 @@ fetchConfigData(() => {
         let container = document.getElementById('chart-container');
         container.innerHTML = '';
         container.classList.add("active");
+
         for (const key of Object.keys(data)) {
             if (key === 'cpu') {
                 generatePieChart('Cpu Usage', key, data[key], container);
@@ -28,13 +29,16 @@ fetchConfigData(() => {
                 generatePieChart('Memory Usage', key, data[key], container);
             } else if (key === 'disk') {
                 generatePieChart('Disk Usage', key, data[key], container);
+            } else if (key === 'battery') {
+                generatePieChart('Battery Level', key, data[key], container);
             }
+
+            console.log(key);
         }
     });
 });
 
 function generatePieChart(chartTitle, key, chartData, container) {
-
     var chartDiv = document.createElement('div');
     chartDiv.className = 'chart';
     container.appendChild(chartDiv);
@@ -54,25 +58,21 @@ function generatePieChart(chartTitle, key, chartData, container) {
     var statusTitle = document.createElement('h2');
     statusTitle.className = 'status';
 
-    if (chartData < config.data[key].warning) {
-        status = "Normal";
-        statusTitle.classList.add('normal');
-    } else if (chartData >= config.data[key].warning && chartData < config.data[key].alert) {
-        status = "Warning";
-        statusTitle.classList.add('warning');
-    } else if (chartData >= config.data[key].alert) {
-        status = "Alert";
-        statusTitle.classList.add('alert');
-    }
-    statusTitle.textContent = status;
+    // const { status, percent } = chartData;
+    
+    // statusTitle.textContent = status;  // .charAt(0).toUpperCase() + status.slice(1);
+    // statusTitle.classList.add(status);
+
+    const percent = chartData;
+    
     chartDiv.appendChild(statusTitle);
 
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Used', 'Free'],
+            labels: ['Used', 'Remaining'],
             datasets: [{
-                data: [chartData, (100 - chartData)],
+                data: [percent, (100 - percent)],
                 backgroundColor: ['#ff6384', '#36a2eb'],
                 hoverBackgroundColor: ['#ff6384', '#36a2eb']
             }]
