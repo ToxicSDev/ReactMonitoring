@@ -24,12 +24,41 @@ http.listen(PORT, HOST, () => {
     console.log(`    \x1b[36m│      \x1b[31m> SystemMonitoring Started <      \x1b[36m│`);
     console.log(`    \x1b[36m│    \x1b[37m            Backend                 \x1b[36m│`);
     console.log(`    \x1b[36m│    \x1b[37m                                    \x1b[36m│`);
-    console.log(`    \x1b[36m│    \x1b[37m      ${HOST}:${PORT}         \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m          ${HOST}:${PORT}              \x1b[36m│`);
     console.log(`    \x1b[36m╰────────────────────────────────────────╯`);
     console.log(`\x1b[0m`);
 }).on('error', (error) => {
-    console.error('\x1b[31mERROR: \x1b[37mFailed to start server:', error.message);
+    console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to start server:', error.message);
     process.exit(1);
 });
 
+process.on('SIGINT', () => {
+    console.log('Received SIGINT signal. Gracefully shutting down...');
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM signal. Gracefully shutting down...');
+    process.exit(0);
+});
+
+function getCurTimeColored() {
+    const now = new Date();
+
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    return `\x1b[36m${getTimeEdited(day)}/${getTimeEdited(month)}/${year} ${getTimeEdited(hours)}:${getTimeEdited(minutes)}:${getTimeEdited(seconds)}\x1b[37m`;
+}
+
+function getTimeEdited(time) {
+    return time < 10 ? '0' + time : time;
+}
+
+module.exports.getCurTimeColored = getCurTimeColored;
 module.exports.clients = clients;

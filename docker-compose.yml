@@ -2,7 +2,7 @@ version: '3'
 services:
   backend:
     build: ./server
-    ports:
+    expose:
       - "3031"
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://backend:3031/" ]
@@ -11,14 +11,14 @@ services:
       retries: 3
       start_period: 5s
     deploy:
-      replicas: 5
+      replicas: 1
       restart_policy:
         condition: on-failure
         max_attempts: 3
 
   frontend:
     build: ./client
-    ports:
+    expose:
       - "3030"
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://frontend:3030/" ]

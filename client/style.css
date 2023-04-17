@@ -45,7 +45,7 @@ body {
 
 .chart-container.active {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 
@@ -79,15 +79,15 @@ body {
 }
 
 .status.normal {
-    background: #00800033;
+    background: #23cf0c94;
 }
 
 .status.warning {
-    background: #ffff0033;
+    background: #eed202;
 }
 
 .status.alert {
-    background: #ff000030;
+    background: #f0140494;
 }
 
 .lds-ripple {
