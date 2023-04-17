@@ -60,7 +60,6 @@
         "Frontend": {
             "host": "frontend",
             "port": 3030
-        },
-        "refreshRate": 10
+        }
     }
 }

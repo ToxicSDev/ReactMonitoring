@@ -12,9 +12,7 @@ The SystemMonitoring project allows users to set customizable threshold limits f
 
 ## Dependencies
 
-- [Docker](https://www.docker.com/) **(Recommended)** - Used for building, shipping, and running the microservices using containers. Docker-compose is used for scalability and container management.
-
-- [NPM](https://www.npmjs.com/) **(Required if Docker isn't used)** - A package manager for the JavaScript programming language.
+- [Docker](https://www.docker.com/) **(Required)** - Used for building, shipping, and running the microservices using containers. Docker-compose is used for scalability and container management.
 
 ### NPM Packages
 
@@ -44,11 +42,7 @@ To install the application, follow the instructions and run the appropriate file
 |-------------|----------------|
 | Docker + Linux    | `./docker-start.sh` |
 | Docker + Windows  | `docker-start.bat` |
-| npm + Linux       | `./npm-start.sh`    |
-| npm + Windows     | `npm-start.bat`     |
 
 If you are using Docker, make sure Docker is installed and the daemon is running on your system before running the appropriate start file based on your operating system. The `docker-start.sh` and `docker-start.bat` scripts will build the Docker images and start the containers for you. If you rerun the start file it will first stop any existing containers and then rebuild and rerun the containers.
 
-If you are not using Docker and prefer to use npm, make sure npm is installed on your system and run the appropriate start command based on your operating system. The `npm-start.sh` and `npm-start.bat` scripts will install the necessary npm packages and start the application for you.
-
-Once the application is started, you can access it by navigating to `http://localhost:3030` in your web browser.
+Once the application is started, you can access it by navigating to `http://localhost` in your web browser.
