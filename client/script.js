@@ -16,7 +16,7 @@ function fetchConfigData(callback) {
 
 
 fetchConfigData(() => {
-    var socket = io(config.server.Backend.host + ':' + config.server.Backend.port);
+    var socket = io();
     socket.on('info', data => {
         let container = document.getElementById('chart-container');
         container.innerHTML = '';

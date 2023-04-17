@@ -27,11 +27,11 @@
     },
     "server": {
         "Backend": {
-            "host": "http://localhost",
+            "host": "backend",
             "port": 3031
         },
         "Frontend": {
-            "host": "http://localhost",
+            "host": "frotnednd",
             "port": 3030
         },
         "refreshRate": 10
