@@ -25,15 +25,15 @@ function processData(key, data) {
         if (data <= config.data[key].alert) {
             console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is below', config.data[key].alert, '%!');
         }
-    }
+    } else {
+        // Checks if data is above warning or alert levels
+        if (data >= config.data[key].warning && data < config.data[key].alert) {
+            console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
+        }
 
-    // Checks if data is above warning or alert levels
-    if (data >= config.data[key].warning && data < config.data[key].alert) {
-        console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
-    }
-
-    if (data >= config.data[key].alert) {
-        console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
+        if (data >= config.data[key].alert) {
+            console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
+        }
     }
 
     return true;
@@ -48,7 +48,7 @@ async function getInformation() {
         try {
             const data = await system[key]();
 
-            if(!processData(key, data)) {
+            if (!processData(key, data)) {
                 continue;
             }
 

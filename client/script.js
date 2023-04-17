@@ -57,15 +57,29 @@ function generatePieChart(key, percentage, container) {
     var statusTitle = document.createElement('h2');
     statusTitle.className = 'status';
 
-    if (percentage < config.data[key].warning) {
-        status = "Normal";
-        statusTitle.classList.add('normal');
-    } else if (percentage >= config.data[key].warning && percentage < config.data[key].alert) {
-        status = "Warning";
-        statusTitle.classList.add('warning');
-    } else if (percentage >= config.data[key].alert) {
-        status = "Alert";
-        statusTitle.classList.add('alert');
+    if (config.data[key].inverted) {
+        if (percentage > config.data[key].warning) {
+            status = "Normal";
+            statusTitle.classList.add('normal');
+        } else if (percentage <= config.data[key].warning && percentage > config.data[key].alert) {
+            status = "Warning";
+            statusTitle.classList.add('warning');
+        } else if (percentage <= config.data[key].alert) {
+            status = "Alert";
+            statusTitle.classList.add('alert');
+        } 
+    }
+    else {
+        if (percentage < config.data[key].warning) {
+            status = "Normal";
+            statusTitle.classList.add('normal');
+        } else if (percentage >= config.data[key].warning && percentage < config.data[key].alert) {
+            status = "Warning";
+            statusTitle.classList.add('warning');
+        } else if (percentage >= config.data[key].alert) {
+            status = "Alert";
+            statusTitle.classList.add('alert');
+        }
     }
     statusTitle.textContent = status;
     chartDiv.appendChild(statusTitle);

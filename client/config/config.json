@@ -4,6 +4,7 @@
             "active": true,
             "warning": 50,
             "alert": 75,
+            "inverted": false,
             "chart": {
                 "title": "CPU Usage",
                 "dataLabel": "Used",
@@ -14,6 +15,7 @@
             "active": true,
             "warning": 50,
             "alert": 75,
+            "inverted": false,
             "chart": {
                 "title": "Memory Usage",
                 "dataLabel": "Used",
@@ -24,6 +26,7 @@
             "active": true,
             "warning": 50,
             "alert": 60,
+            "inverted": false,
             "chart": {
                 "title": "Disk Usage",
                 "dataLabel": "Used",
@@ -34,6 +37,7 @@
             "active": true,
             "warning": 30,
             "alert": 10,
+            "inverted": true,
             "chart": {
                 "title": "Battery Level",
                 "dataLabel": "Remaining",
