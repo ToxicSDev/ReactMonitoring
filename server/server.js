@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const cron = require('./utils/cron');
 
 const Client = require('./models/client');
+const { getCurTimeColored } = require('./utils/timeUtils');
 
 const HOST = config.server.Backend.host || 'backend';
 const PORT = config.server.Backend.port || 3031;
@@ -42,23 +43,4 @@ process.on('SIGTERM', () => {
     process.exit(0);
 });
 
-function getCurTimeColored() {
-    const now = new Date();
-
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    return `\x1b[36m${getTimeEdited(day)}/${getTimeEdited(month)}/${year} ${getTimeEdited(hours)}:${getTimeEdited(minutes)}:${getTimeEdited(seconds)}\x1b[37m`;
-}
-
-function getTimeEdited(time) {
-    return time < 10 ? '0' + time : time;
-}
-
-module.exports.getCurTimeColored = getCurTimeColored;
 module.exports.clients = clients;

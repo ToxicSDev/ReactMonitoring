@@ -1,5 +1,5 @@
-const main = require('../server');
 const cron = require('../utils/cron');
+const { getCurTimeColored } = require('../utils/timeUtils');
 
 class Client {
     /**
@@ -7,12 +7,12 @@ class Client {
      */
     constructor (client) {
         this.socket = client;
-        console.log(main.getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client connected!');
+        console.log(getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client connected!');
         this.client = this;
 
         client.on('disconnect', () => {
             this.remove.bind(this);
-            console.log(main.getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client disconnected!');
+            console.log(getCurTimeColored(), '\t\x1b[36mINFO\x1b[37m\t\t Client disconnected!');
         });
     }
 
@@ -20,7 +20,7 @@ class Client {
         try {
             this.socket.emit('info', data);
         } catch (error) {
-            console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to send server data:', error.message);
+            console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to send server data:', error.message);
             process.exit(1);
         }
     }
@@ -33,7 +33,7 @@ class Client {
             if (index != -1) main.clients.splice(index, 1);
             if (main.clients.length == 0) cron.destroyTask();
         } catch (error) {
-            console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to remove client:', error.message);
+            console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to remove client:', error.message);
             process.exit(1);
         }
     }

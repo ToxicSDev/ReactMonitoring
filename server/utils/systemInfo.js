@@ -1,12 +1,12 @@
 const si = require('systeminformation');
-const main = require('../server');
+const { getCurTimeColored } = require('./timeUtils');
 
 exports.cpu = async () => {
     try {
         const cpuUsage = await si.currentLoad();
         return cpuUsage.currentload.toFixed(1);
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get CPU usage:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get CPU usage:', error.message);
         return 'N/A';
     }
 };
@@ -20,7 +20,7 @@ exports.mem = async () => {
 
         return usedMemoryPercentage.toFixed(1);
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get memory usage:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get memory usage:', error.message);
 
         process.exit(1);
     }
@@ -41,7 +41,7 @@ exports.disk = async () => {
 
         return totalUsedSpacePercentage.toFixed(1);
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get disk usage:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get disk usage:', error.message);
 
         process.exit(1);
     }
@@ -64,7 +64,7 @@ exports.graphics = async () => {
 
         return totalUsedMemoryPercentage.toFixed(1);
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get graphics usage:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get graphics usage:', error.message);
 
         process.exit(1);
     }
@@ -75,7 +75,7 @@ exports.battery = async () => {
         const batteryInfo = await si.battery();
         return batteryInfo.hasbattery ? batteryInfo.percent.toFixed(1) : 'N/A';
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get battery percentage:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get battery percentage:', error.message);
         
         process.exit(1);
     }

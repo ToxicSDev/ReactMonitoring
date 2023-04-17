@@ -1,7 +1,7 @@
 const config = require('../config/config.json');
 const cron = require('node-cron');
 const core = require('./infoController');
-const main = require('../server');
+const { getCurTimeColored } = require('./utils/timeUtils');
 
 let task;
 
@@ -16,7 +16,7 @@ exports.startTask = () => {
             core();
         });
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to start cron task:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to start cron task:', error.message);
         process.exit(1);
     }
 };
@@ -28,7 +28,7 @@ exports.destroyTask = () => {
             task = null;
         }
     } catch (error) {
-        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to destroy cron task:', error.message);
+        console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to destroy cron task:', error.message);
         process.exit(1);
     }
 };
