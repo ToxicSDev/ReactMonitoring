@@ -18,6 +18,12 @@
             "alert": 60,
             "inverted": false
         },
+        "graphics": {
+            "active": false,
+            "warning": 50,
+            "alert": 75,
+            "inverted": false
+        },
         "battery": {
             "active": true,
             "warning": 30,
@@ -27,11 +33,11 @@
     },
     "server": {
         "Backend": {
-            "host": "http://localhost",
+            "host": "backend",
             "port": 3031
         },
         "Frontend": {
-            "host": "http://localhost",
+            "host": "frontend",
             "port": 3030
         },
         "refreshRate": 10

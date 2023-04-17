@@ -16,7 +16,7 @@ function fetchConfigData(callback) {
 
 
 fetchConfigData(() => {
-    var socket = io(config.server.Backend.host + ':' + config.server.Backend.port);
+    var socket = io();
     socket.on('info', data => {
         let container = document.getElementById('chart-container');
         container.innerHTML = '';
@@ -67,7 +67,7 @@ function generatePieChart(key, percentage, container) {
         } else if (percentage <= config.data[key].alert) {
             status = "Alert";
             statusTitle.classList.add('alert');
-        } 
+        }
     }
     else {
         if (percentage < config.data[key].warning) {
@@ -81,6 +81,7 @@ function generatePieChart(key, percentage, container) {
             statusTitle.classList.add('alert');
         }
     }
+    
     statusTitle.textContent = status;
     chartDiv.appendChild(statusTitle);
 

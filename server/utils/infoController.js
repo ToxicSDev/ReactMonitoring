@@ -7,32 +7,32 @@ function processData(key, data) {
 
     // Checks if data is valid
     if (data == 'N/A' || data == 'NaN') {
-        console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is not available!');
+        console.log(main.getCurTimeColored(), '\t\x1b[33mWARNING\x1b[37m\t\t', keyName, 'usage is \x1b[33mnot available\x1b[0m!');
         return false;
     }
 
     if (data < 0) {
-        console.log('\x1b[31mAlert: \x1b[37m', keyName, 'usage is below 0%!');
+        console.log(main.getCurTimeColored(), '\t\x1b[31mALERT\x1b[37m\t\t', keyName, 'usage is below\x1b[33m 0\x1b[0m%!');
         return false;
     }
 
     // Checks if data is below warning or alert levels
     if (config.data[key].inverted) {
         if (data <= config.data[key].warning && data > config.data[key].alert) {
-            console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is below', config.data[key].warning, '%!');
+            console.log(main.getCurTimeColored(), '\t\x1b[33mWARNING\x1b[37m\t\t', keyName, 'usage is below', `\x1b[33m${config.data[key].warning}\x1b[0m%!`);
         }
 
         if (data <= config.data[key].alert) {
-            console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is below', config.data[key].alert, '%!');
+            console.log(main.getCurTimeColored(), '\t\x1b[31mALERT\x1b[37m\t\t', keyName, 'usage is below', `\x1b[33m${config.data[key].alert}\x1b[0m%!`);
         }
     } else {
         // Checks if data is above warning or alert levels
         if (data >= config.data[key].warning && data < config.data[key].alert) {
-            console.log('\x1b[33mWARNING: \x1b[37m', keyName, 'usage is above', config.data[key].warning, '%!');
+            console.log(main.getCurTimeColored(), '\t\x1b[33mWARNING\x1b[37m\t\t', keyName, 'usage is above', `\x1b[33m${config.data[key].warning}\x1b[0m%!`);
         }
 
         if (data >= config.data[key].alert) {
-            console.log('\x1b[31mALARM: \x1b[37m', keyName, 'usage is above', config.data[key].alert, '%!');
+            console.log(main.getCurTimeColored(), '\t\x1b[31mALERT\x1b[37m\t\t', keyName, 'usage is above', `\x1b[33m${config.data[key].alert}\x1b[0m%!`);
         }
     }
 
@@ -54,7 +54,7 @@ async function getInformation() {
 
             result[key] = data;
         } catch (error) {
-            console.error('\x1b[31mERROR: \x1b[37mFailed to get information for', key, ':', error.message);
+            console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to get information for', key, ':', error.message);
             process.exit(1);
         }
     }
@@ -71,7 +71,7 @@ async function run() {
         let result = await getInformation();
         sendInformation(JSON.parse(JSON.stringify(result)));
     } catch (error) {
-        console.error('\x1b[31mERROR: \x1b[37mFailed to run information retrieval:', error.message);
+        console.error(main.getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to run information retrieval:', error.message);
         process.exit(1);
     }
 }
