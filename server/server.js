@@ -7,7 +7,7 @@ const cron = require('./utils/cron');
 
 const Client = require('./models/client');
 
-const HOST = config.server.Backend.host || 'http://localhost';
+const HOST = config.server.Backend.host || 'http://backend';
 const PORT = config.server.Backend.port || 3031;
 
 const clients = [];
@@ -18,7 +18,7 @@ io.on('connection', (socket) => {
     if (!cron.getTask()) cron.startTask();
 });
 
-http.listen(PORT, () => {
+http.listen(PORT, HOST, () => {
     console.log(`\x1b[36m`);
     console.log(`    \x1b[36m╭────────────────────────────────────────╮`);
     console.log(`    \x1b[36m│      \x1b[31m> SystemMonitoring Started <      \x1b[36m│`);
@@ -50,5 +50,5 @@ function getTimeEdited(time) {
     return time < 10 ? '0' + time : time;
 }
 
-module.exports.clients = clients;
 module.exports.getCurTimeColored = getCurTimeColored;
+module.exports.clients = clients;

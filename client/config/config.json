@@ -58,11 +58,11 @@
     },
     "server": {
         "Backend": {
-            "host": "http://localhost",
+            "host": "http://backend",
             "port": 3031
         },
         "Frontend": {
-            "host": "http://localhost",
+            "host": "http://frontend",
             "port": 3030
         },
         "refreshRate": 10

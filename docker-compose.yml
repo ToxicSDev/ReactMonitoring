@@ -3,15 +3,15 @@ services:
   backend:
     build: ./server
     ports:
-      - "3031:3031"
+      - "3031"
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3031/" ]
+      test: [ "CMD", "curl", "-f", "http://backend:3031/" ]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 5s
     deploy:
-      replicas: 1
+      replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 3
@@ -19,15 +19,29 @@ services:
   frontend:
     build: ./client
     ports:
-      - "3030:3030"
+      - "3030"
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3030/" ]
+      test: [ "CMD", "curl", "-f", "http://frontend:3030/" ]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 5s
     deploy:
-      replicas: 1
+      replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 3
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "80:80"
+networks:
+  default:
+    driver: bridge
+    name: SystemMonitoring
