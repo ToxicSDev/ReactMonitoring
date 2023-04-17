@@ -23,6 +23,10 @@ fetchConfigData(() => {
         container.classList.add("active");
 
         for (const key of Object.keys(data)) {
+            if (!config.data[key].active) {
+                continue;
+            }
+
             generatePieChart(key, data[key], container);
         }
     });
