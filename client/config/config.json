@@ -13,8 +13,8 @@
         },
         "mem": {
             "active": true,
-            "warning": 50,
-            "alert": 75,
+            "warning": 95,
+            "alert": 85,
             "inverted": false,
             "chart": {
                 "title": "Memory Usage",
@@ -46,8 +46,8 @@
         },
         "battery": {
             "active": true,
-            "warning": 30,
-            "alert": 10,
+            "warning": 90,
+            "alert": 60,
             "inverted": true,
             "chart": {
                 "title": "Battery Level",
