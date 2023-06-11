@@ -1,5 +1,7 @@
 # SystemMonitoring
 
+[![Demo](https://i.imgur.com/s5DvgVB.png)](https://i.imgur.com/s5DvgVB.png)
+
 SystemMonitoring is a powerful project that monitors the performance of your system's CPU usage, memory usage, and disk usage in real-time, providing you with valuable insights into your system's resource utilization. The project is designed as a microservices architecture, consisting of two main components - the server for backend data gathering and the client for frontend visualization, allowing for efficient and scalable monitoring.
 
 The client component provides a user-friendly interface that displays the system's resource utilization in a visually appealing pie chart. Each resource has three stages - normal, warning, and alert, each representing the current status of a particular resource usage. The normal stage indicates that the resource usage is within the acceptable range, while the warning stage indicates that the resource usage is approaching the threshold limit. The alert stage indicates that the resource usage has exceeded the threshold limit and requires immediate attention.
@@ -43,6 +45,6 @@ To install the application, follow the instructions and run the appropriate file
 | Docker + Linux    | `./docker-start.sh` |
 | Docker + Windows  | `docker-start.bat` |
 
-If you are using Docker, make sure Docker is installed and the daemon is running on your system before running the appropriate start file based on your operating system. The `docker-start.sh` and `docker-start.bat` scripts will build the Docker images and start the containers for you. If you rerun the start file it will first stop any existing containers and then rebuild and rerun the containers.
+When using Docker, make sure Docker is installed and the daemon is running on your system before running the appropriate start file based on your operating system. The `docker-start.sh` and `docker-start.bat` scripts will build the Docker images and start the containers for you. If you rerun the start file it will first stop any existing containers and then rebuild and rerun the containers.
 
 Once the application is started, you can access it by navigating to `http://localhost` in your web browser.
