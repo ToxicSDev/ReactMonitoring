@@ -48,3 +48,7 @@ To install the application, follow the instructions and run the appropriate file
 When using Docker, make sure Docker is installed and the daemon is running on your system before running the appropriate start file based on your operating system. The `docker-start.sh` and `docker-start.bat` scripts will build the Docker images and start the containers for you. If you rerun the start file it will first stop any existing containers and then rebuild and rerun the containers.
 
 Once the application is started, you can access it by navigating to `http://localhost` in your web browser.
+
+## License
+
+This project is licensed under the terms of the GNU General Public License v3.0 (GPL v3). This means you are free to use, modify, and distribute this software under the conditions that you disclose source code of licensed works and modifications, and that you also license them under the GPL v3. For the full details, please see the [LICENSE](LICENSE) file in the project repository or visit the GNU website.
